@@ -1,4 +1,3 @@
-from turtle import position
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
@@ -10,6 +9,9 @@ class Department(models.Model):
     def __str__(self) -> str:
         return self.name
 
+    def __repr__(self) -> str:
+        return self.name
+
 
 class JobTitle(models.Model):
     position = models.CharField(max_length=60)
@@ -17,6 +19,9 @@ class JobTitle(models.Model):
         Department, on_delete=models.DO_NOTHING, blank=True)
 
     def __str__(self) -> str:
+        return self.position
+
+    def __repr__(self) -> str:
         return self.position
 
 
@@ -30,4 +35,7 @@ class CustomUser(AbstractUser):
         help_text="Your birthday", blank=True, null=True)
 
     def __str__(self) -> str:
+        return self.username
+
+    def __repr__(self) -> str:
         return self.username
