@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from accounts.models import Department
+from clients.models import Client
 
 
 class Category(models.Model):
@@ -46,3 +47,6 @@ class Task(models.Model):
     expectation = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    client = models.ForeignKey(Client , on_delete=models.DO_NOTHING)
+
+    REQUIRED_FIELDS = ['category', 'service_type', 'priority', 'department']

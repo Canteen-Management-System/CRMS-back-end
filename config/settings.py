@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # Apps
     'accounts',
     'tasks',
+    'clients',
     # Third-party modules
     'rest_framework',
     'rest_framework_simplejwt',
@@ -131,15 +132,15 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-REST_FRAMEWORK = {
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.IsAuthenticated',
-    # ],
-    'DEFAULT_AUTHENTICATION_CLASSES': [
+REST_FRAMEWORK={
+        'DEFAULT_PERMISSION_CLASSES': [         'rest_framework.permissions.IsAuthenticated',
+        ],
+        'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ]
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        ),
 }
-
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.CustomUser'
