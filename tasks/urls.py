@@ -9,6 +9,8 @@ from tasks.api.viewset import (
     ServiceTypeList,
     ServiceTypeDetail
 )
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
 
 urlpatterns = [
     # Tasks Lists and Details
@@ -29,5 +31,7 @@ urlpatterns = [
     path('service-type-list', ServiceTypeList.as_view(), name='service_type_list'),
     path('service-type-detail/<int:pk>',
          ServiceTypeDetail.as_view(), name='service_type_detail'),
-
+    # Access Token
+    path('token', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
 ]
