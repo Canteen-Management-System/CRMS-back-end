@@ -27,10 +27,10 @@ class Priority(models.Model):
     priority = models.CharField(max_length=255)
 
     def __str__(self) -> str:
-        return self.service
+        return self.priority
 
     def __repr__(self) -> str:
-        return self.service
+        return self.priority
 
 
 class Task(models.Model):

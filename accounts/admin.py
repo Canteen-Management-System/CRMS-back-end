@@ -1,15 +1,13 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, Department, JobTitle
-# from .forms import CustomUserChangeForm
-# from .forms import CustomUserCreationForm
-# Register your models here.
+from .models import CustomUser, Department, JobTitle, Role
+from django.contrib.auth.admin import UserAdmin
 
 
 @admin.register(JobTitle)
 class JobTitleAdmin(admin.ModelAdmin):
     model = JobTitle
-    list_display = ['position', 'department']
+    list_display = ['id', 'position', 'department']
 
 
 @admin.register(Department)
@@ -17,11 +15,17 @@ class DepartmentsAdmin(admin.ModelAdmin):
     model = Department
 
 
+@admin.register(Role)
+class RoleAdmin(admin.ModelAdmin):
+    model = Role
+
+
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
-    list_display = ["username", "first_name",
-                    "last_name", 'position']
+    list_display = ['id', 'employer_id', "first_name",
+                    "role", 'position', 'email']
 
     fieldsets = UserAdmin.fieldsets + \
-        (("User Info", {"fields": ['position', 'phone', 'birthday']}),)
+        (("User Info", {"fields": [
+         'position', 'phone', 'birthday', 'role', 'department']}),)

@@ -1,6 +1,9 @@
+from pyexpat import model
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractBaseUser, AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
+import uuid
+# from django.contrib.auth.models import UserManager
 
 
 class Department(models.Model):
@@ -25,7 +28,19 @@ class JobTitle(models.Model):
         return self.position
 
 
+class Role(models.Model):
+    role = models.CharField(max_length=64)
+
+    def __str__(self) -> str:
+        return self.role
+
+    def __repr__(self) -> str:
+        return self.role
+
+
 class CustomUser(AbstractUser):
+    employer_id = models.CharField(default=uuid.uuid4(
+    ).hex[:7].upper(), max_length=50, editable=False, unique=True)
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
     position = models.ForeignKey(
@@ -33,9 +48,12 @@ class CustomUser(AbstractUser):
     phone = PhoneNumberField(blank=True)
     birthday = models.DateField(
         help_text="Your birthday", blank=True, null=True)
+    department = models.ForeignKey(
+        Department, on_delete=models.DO_NOTHING, null=True)
+    role = models.ForeignKey(Role, on_delete=models.DO_NOTHING, null=True)
+    email = models.EmailField(max_length=255)
+    staff = models.BooleanField(default=False)
+    admin = models.BooleanField(default=False)
+    active = models.BooleanField(default=True)
 
-    def __str__(self) -> str:
-        return self.username
-
-    def __repr__(self) -> str:
-        return self.username
+    USERNAME_FIELD = 'employer_id'
