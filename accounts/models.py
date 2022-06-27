@@ -56,4 +56,4 @@ class CustomUser(AbstractUser):
     admin = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
 
-    USERNAME_FIELD = 'employer_id'
+    # USERNAME_FIELD = 'employer_id'
