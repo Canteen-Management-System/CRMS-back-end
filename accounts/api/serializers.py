@@ -5,13 +5,14 @@ from accounts.models import CustomUser
 class CustomUserSerializer(serializers.ModelSerializer):
    class Meta:
        model = CustomUser
-       fields = ['first_name',
-                 'lastName',
+       fields = ['employer_id',
+                 'first_name',
+                 'last_name',
                  'position',
                  'phone',
                  'birthday',
                  'department',
-                 'role,',
+                 'role',
                  'email',
                  'staff',
                  'admin',
