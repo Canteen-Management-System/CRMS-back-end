@@ -7,7 +7,6 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
-        token['employer_id'] = user.employer_id
         token['role'] = str(user.role)
         token['first_name'] = user.first_name
         token['position'] = str(user.position)
@@ -21,13 +20,14 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ['employer_id',
-                  'first_name',
-                  'last_name',
-                  'position',
-                  'phone',
-                  'birthday',
-                  'department',
-                  'role',
-                  'email',
-                  ]
+        fields = [
+            'id',
+            'first_name',
+            'last_name',
+            'position',
+            'phone',
+            'birthday',
+            'department',
+            'role',
+            'email',
+        ]
