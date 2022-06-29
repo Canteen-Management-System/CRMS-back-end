@@ -3,7 +3,6 @@
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
-import phonenumber_field.modelfields
 
 
 class Migration(migrations.Migration):
@@ -16,14 +15,15 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Client',
+            name='Chat',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('full_name', models.CharField(max_length=255)),
-                ('phone_number', phonenumber_field.modelfields.PhoneNumberField(blank=True, max_length=128, region=None, unique=True)),
-                ('email', models.EmailField(max_length=255, unique=True)),
-                ('address', models.CharField(max_length=255)),
-                ('created_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('message', models.CharField(max_length=1000)),
+                ('from_message', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='+', to=settings.AUTH_USER_MODEL)),
+                ('to_message', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='+', to=settings.AUTH_USER_MODEL)),
             ],
+            options={
+                'db_table': 'chat',
+            },
         ),
     ]

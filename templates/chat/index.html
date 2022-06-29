@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Chats Room</title>
+</head>
+<body>
+<div class="container"
+<h3>What chat room would you 1ike to enter? </h3> <br>
+<input id="roomname" type="text" size="100"> <br> <br>
+<input id="submit" type="button" value="Enter"
+</div>
+<script>
+document.querySelector ('#submit ') .onclick = function (e) {
+var myRoom = document.querySelector ('#roomn ame ').value;
+window. location . pathname = '/chats/' + myRoom+ '/'};
+</script>
+</body>
+</html>

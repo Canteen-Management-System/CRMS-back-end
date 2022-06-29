@@ -39,8 +39,8 @@ class Role(models.Model):
 
 
 class CustomUser(AbstractUser):
-    employer_id = models.CharField(default=uuid.uuid4(
-    ).hex[:7].upper(), max_length=50, editable=False, unique=True)
+    # employer_id = models.CharField(default=uuid.uuid4(
+    # ).hex[:7].upper(), max_length=50, editable=False, unique=True)
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
     position = models.ForeignKey(
