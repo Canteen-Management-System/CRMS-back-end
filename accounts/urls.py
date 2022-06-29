@@ -1,5 +1,5 @@
 from django.urls import include, path
-from accounts.api.viewset import CustomTokenObtainPairView, UsersList, DepartmentList, DepartmentDetail, RoleDetail, RoleList, JobTitleDetail, JobTitleList
+from accounts.api.viewset import CustomTokenObtainPairView, UsersList, DepartmentList, DepartmentDetail, RoleDetail, RoleList, JobTitleDetail, JobTitleList,UserCreate
 
 urlpatterns = [
     path('token/', CustomTokenObtainPairView.as_view(), name='token'),
@@ -15,4 +15,5 @@ urlpatterns = [
     path('positions-list', JobTitleList.as_view(), name='positions_list'),
     path('positions-detail/<int:pk>',
          JobTitleDetail.as_view(), name='positions_detail'),
-]
+    path('create-user',UserCreate.as_view(),name='create-user'),
+]   

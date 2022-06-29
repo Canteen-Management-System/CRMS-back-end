@@ -1,9 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, AbstractUser , PermissionsMixin, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, AbstractUser, PermissionsMixin, BaseUserManager
 from phonenumber_field.modelfields import PhoneNumberField
 import uuid
 from django.contrib.auth.models import User
 import random
+
 
 class CustomAccountManager(BaseUserManager):
 
@@ -33,7 +34,6 @@ class CustomAccountManager(BaseUserManager):
         user.set_password(password)
         user.save()
         return user
-
 
 
 class Department(models.Model):
@@ -68,13 +68,12 @@ class Role(models.Model):
         return self.name
 
 
-
-
 class CustomUser(AbstractUser):
     def random_wlan_key():
-      return ''.join(random.SystemRandom().choice("1234567890") for i in range(7))
+        return ''.join(random.SystemRandom().choice("1234567890") for i in range(7))
 
-    employer_id = models.CharField(max_length=10, default=random_wlan_key,unique=True)
+    employer_id = models.CharField(
+        max_length=10, default=random_wlan_key, unique=True)
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
     position = models.ForeignKey(
@@ -94,7 +93,6 @@ class CustomUser(AbstractUser):
 
     USERNAME_FIELD = 'employer_id'
     # REQUIRED_FIELDS = ['', 'first_name']
-
 
     # def __repr__(self) -> str:
     #     return self.username
