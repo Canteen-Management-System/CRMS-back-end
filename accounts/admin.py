@@ -1,7 +1,9 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.admin import UserAdmin 
 from .models import CustomUser, Department, JobTitle, Role
-from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.admin import UserAdmin 
+
+
 
 
 @admin.register(JobTitle)
@@ -24,8 +26,13 @@ class RoleAdmin(admin.ModelAdmin):
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
     list_display = ['id', 'username', "first_name",
-                    "role", 'position', 'email']
+                    "role", 'position', 'email','employer_id']
 
     fieldsets = UserAdmin.fieldsets + \
         (("User Info", {"fields": [
          'position', 'phone', 'birthday', 'role', 'department']}),)
+
+
+
+
+
