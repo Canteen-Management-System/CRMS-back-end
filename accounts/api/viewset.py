@@ -7,7 +7,7 @@ from .serializers import CustomUserSerializer, CustomTokenObtainPairSerializer
 from rest_framework.response import Response
 
 
-class CustomUserViewSet(ListCreateAPIView):
+class UsersList(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
