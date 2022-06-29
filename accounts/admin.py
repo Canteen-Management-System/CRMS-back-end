@@ -7,7 +7,7 @@ from django.contrib.auth.admin import UserAdmin
 @admin.register(JobTitle)
 class JobTitleAdmin(admin.ModelAdmin):
     model = JobTitle
-    list_display = ['id', 'position', 'department']
+    list_display = ['id', 'name', 'department']
 
 
 @admin.register(Department)

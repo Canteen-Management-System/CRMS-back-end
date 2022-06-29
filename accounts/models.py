@@ -16,25 +16,25 @@ class Department(models.Model):
 
 
 class JobTitle(models.Model):
-    position = models.CharField(max_length=60)
+    name = models.CharField(max_length=60)
     department = models.ForeignKey(
         Department, on_delete=models.DO_NOTHING, blank=True)
 
     def __str__(self) -> str:
-        return self.position
+        return self.name
 
     def __repr__(self) -> str:
-        return self.position
+        return self.name
 
 
 class Role(models.Model):
-    role = models.CharField(max_length=64)
+    name = models.CharField(max_length=64)
 
     def __str__(self) -> str:
-        return self.role
+        return self.name
 
     def __repr__(self) -> str:
-        return self.role
+        return self.name
 
 
 class CustomUser(AbstractUser):
@@ -53,3 +53,5 @@ class CustomUser(AbstractUser):
     email = models.EmailField(max_length=255)
 
     # USERNAME_FIELD = 'username'
+    def __repr__(self) -> str:
+        return self.username

@@ -1,5 +1,6 @@
+from statistics import mode
 from rest_framework import serializers
-from accounts.models import CustomUser
+from accounts.models import CustomUser, Department, Role, JobTitle
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
@@ -31,3 +32,21 @@ class CustomUserSerializer(serializers.ModelSerializer):
             'role',
             'email',
         ]
+
+
+class DepartmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Department
+        fields = "__all__"
+
+
+class RoleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Role
+        fields = "__all__"
+
+
+class JobTitleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobTitle
+        fields = "__all__"
