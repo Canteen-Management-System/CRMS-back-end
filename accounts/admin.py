@@ -23,7 +23,7 @@ class RoleAdmin(admin.ModelAdmin):
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
-    list_display = ['id', 'employer_id', "first_name",
+    list_display = ['id', 'username', 'employer_id', "first_name",
                     "role", 'position', 'email']
 
     fieldsets = UserAdmin.fieldsets + \

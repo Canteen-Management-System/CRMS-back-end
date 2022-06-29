@@ -1,11 +1,6 @@
 from django.urls import include, path
-
-
-from accounts.api.viewset import CustomUserViewSet
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-
-
+from accounts.api.viewset import CustomTokenObtainPairView
 
 urlpatterns = [
-   path('accounts', CustomUserViewSet.as_view() , name= 'accounts'),
+    path('token/', CustomTokenObtainPairView.as_view(), name='token')
 ]

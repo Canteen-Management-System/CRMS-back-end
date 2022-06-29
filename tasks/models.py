@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from accounts.models import Department
+from accounts.models import Department, CustomUser
 from clients.models import Client
 
 
@@ -34,6 +34,15 @@ class Priority(models.Model):
         return self.priority
 
 
+def get_department_employees(department):
+    employees = CustomUser.objects.filter(department=department)
+    return employees
+
+
+def get_department_staff():
+    return Department.objects.all()
+
+
 class Task(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     service_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE)
@@ -47,6 +56,6 @@ class Task(models.Model):
     expectation = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    client = models.ForeignKey(Client , on_delete=models.DO_NOTHING)
-
+    client = models.ForeignKey(Client, on_delete=models.DO_NOTHING)
+    assign_to = models.IntegerField()
     REQUIRED_FIELDS = ['category', 'service_type', 'priority', 'department']

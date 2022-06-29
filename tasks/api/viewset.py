@@ -33,6 +33,7 @@ class TaskDetail(RetrieveUpdateDestroyAPIView):
 
 # Category View and Detail
 class CategoryList(ListCreateAPIView):
+
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [IsAuthenticated]

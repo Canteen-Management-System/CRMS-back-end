@@ -1,9 +1,8 @@
-from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
 import uuid
-# from django.contrib.auth.models import UserManager
+from django.contrib.auth.models import User
 
 
 class Department(models.Model):
@@ -39,6 +38,7 @@ class Role(models.Model):
 
 
 class CustomUser(AbstractUser):
+
     employer_id = models.CharField(default=uuid.uuid4(
     ).hex[:7].upper(), max_length=50, editable=False, unique=True)
     first_name = models.CharField(max_length=60)
@@ -52,8 +52,5 @@ class CustomUser(AbstractUser):
         Department, on_delete=models.DO_NOTHING, null=True)
     role = models.ForeignKey(Role, on_delete=models.DO_NOTHING, null=True)
     email = models.EmailField(max_length=255)
-    staff = models.BooleanField(default=False)
-    admin = models.BooleanField(default=False)
-    active = models.BooleanField(default=True)
 
-    # USERNAME_FIELD = 'employer_id'
+    # USERNAME_FIELD = 'username'
