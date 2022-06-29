@@ -52,6 +52,7 @@ class CustomUser(AbstractUser):
     role = models.ForeignKey(Role, on_delete=models.DO_NOTHING, null=True)
     email = models.EmailField(max_length=255)
 
+    
     # USERNAME_FIELD = 'username'
     def __repr__(self) -> str:
         return self.username
