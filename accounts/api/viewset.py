@@ -1,10 +1,32 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializers import CustomUserSerializer, DepartmentSerializer, JobTitleSerializer, RoleSerializer
+from .serializers import CustomUserSerializer, DepartmentSerializer, JobTitleSerializer, RoleSerializer , UserSerializer
 from accounts.models import CustomUser, Department, JobTitle, Role
 from rest_framework.permissions import IsAuthenticated
 from .serializers import CustomUserSerializer, CustomTokenObtainPairSerializer
+from django.contrib.auth.models import User
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
+from rest_framework.authtoken.models import Token
 
+class UserCreate(APIView):
+    """ 
+    Creates the user. 
+    """
+
+    def post(self, request, format='json'):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            if user:
+                token = Token.objects.create(user=user)
+                json = serializer.data
+                json['token'] = token.key
+
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UsersList(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
