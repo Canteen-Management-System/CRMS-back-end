@@ -69,11 +69,11 @@ class Role(models.Model):
 
 
 class CustomUser(AbstractUser):
-    def random_wlan_key():
-        return ''.join(random.SystemRandom().choice("1234567890") for i in range(7))
+    # def random_wlan_key():
+    #     return ''.join(random.SystemRandom().choice("1234567890") for i in range(7))
 
-    employer_id = models.CharField(
-        max_length=10, default=random_wlan_key, unique=True)
+    # employer_id = models.CharField(
+    #     max_length=10, default=random_wlan_key, unique=True)
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
     position = models.ForeignKey(
@@ -86,13 +86,13 @@ class CustomUser(AbstractUser):
     role = models.ForeignKey(Role, on_delete=models.DO_NOTHING, null=True)
     email = models.EmailField(max_length=255)
 
-    is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
+    # is_staff = models.BooleanField(default=False)
+    # is_active = models.BooleanField(default=False)
 
-    objects = CustomAccountManager()
+    # objects = CustomAccountManager()
 
-    USERNAME_FIELD = 'employer_id'
+    # USERNAME_FIELD = 'employer_id'
     # REQUIRED_FIELDS = ['', 'first_name']
 
-    # def __repr__(self) -> str:
-    #     return self.username
+    def __repr__(self) -> str:
+        return self.username
