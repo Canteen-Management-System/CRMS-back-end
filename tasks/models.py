@@ -48,14 +48,12 @@ class Task(models.Model):
     service_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE)
     priority = models.ForeignKey(Priority, on_delete=models.CASCADE)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    department = models.ForeignKey(Department, on_delete=models.DO_NOTHING)
-
-    immediate_resolution = models.BooleanField()
-    action_taken = models.TextField()
-    details = models.TextField()
-    expectation = models.TextField()
+    action_taken = models.TextField(null=True, blank=True)
+    details = models.TextField(null=True, blank=True)
+    expectation = models.TextField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     client = models.ForeignKey(Client, on_delete=models.DO_NOTHING)
     assign_to = models.IntegerField()
+    status = models.CharField(max_length=20, default='open')
     REQUIRED_FIELDS = ['category', 'service_type', 'priority', 'department']

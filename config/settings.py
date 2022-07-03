@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -135,6 +134,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 REST_FRAMEWORK = {
+    'DATETIME_FORMAT': "%d/%m/%Y",
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated',
                                    ],
     'DEFAULT_AUTHENTICATION_CLASSES': (

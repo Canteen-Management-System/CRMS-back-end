@@ -4,19 +4,7 @@ from tasks.models import Task, Category, Priority, ServiceType
 
 class TasksSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = [
-            "id",
-            "category",
-            "service_type",
-            "immediate_resolution",
-            "priority",
-            "action_taken",
-            "details",
-            "expectation",
-            "department",
-            "date",
-            "updated"
-        ]
+        fields = '__all__'
         model = Task
 
 
