@@ -24,7 +24,7 @@ class RoleAdmin(admin.ModelAdmin):
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
     list_display = ['id', 'username', "first_name", 'last_name', 'birthday',
-                    "role", 'position', 'email', 'is_staff', 'is_active', 'department']
+                    "role", 'position', 'email', 'is_staff', 'is_active', 'department', 'phone']
 
     fieldsets = UserAdmin.fieldsets + \
         (("User Info", {"fields": [
