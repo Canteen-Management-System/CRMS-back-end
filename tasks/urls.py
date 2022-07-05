@@ -9,7 +9,9 @@ from tasks.api.viewset import (
     ServiceTypeList,
     ServiceTypeDetail,
     send_email,
-)
+    ClientReqList,
+    ClientReqDetail,
+    )
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 
@@ -37,4 +39,11 @@ urlpatterns = [
     # Access Token
     path('token', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
+
+     # ClientRequest Lists and Details
+    path('clientReq-list', ClientReqList.as_view(), name='clientReq_list'),
+    path('clientReq-detail/<int:pk>',
+         ClientReqDetail.as_view(), name='clientReq_detail'),
+
+
 ]

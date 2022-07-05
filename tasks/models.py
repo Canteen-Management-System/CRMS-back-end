@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from accounts.models import Department, CustomUser
 from clients.models import Client
+from django.conf import settings
+from phonenumber_field.modelfields import PhoneNumberField
+
 
 
 class Category(models.Model):
@@ -54,6 +57,20 @@ class Task(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     client = models.ForeignKey(Client, on_delete=models.DO_NOTHING)
-    assign_to = models.IntegerField()
+    assign_to = models.IntegerField(null=True, blank=True)
+    # assign_to = models.ForeignKey(
+    # CustomUser, on_delete=models.DO_NOTHING, related_name='assign_to')
+
     status = models.CharField(max_length=20, default='open')
     REQUIRED_FIELDS = ['category', 'service_type', 'priority', 'department']
+
+
+class ClientReq(models.Model):
+    client_name = models.CharField(max_length=255)
+    client_company = models.CharField(max_length=255, default='')
+    client_phone_number = PhoneNumberField(unique=True)
+    client_email = models.EmailField(max_length=255, unique=True)
+    task_category = models.CharField(max_length=255, default='')
+    task_service_type = models.CharField(max_length=255, default='')
+    task_details = models.TextField(null=True, blank=True)
+    REQUIRED_FIELDS = ['client_name', 'client_phone_number', 'client_email', 'task_details']

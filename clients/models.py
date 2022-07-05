@@ -10,6 +10,7 @@ class Client(models.Model):
     address = models.CharField(max_length=255)
     created_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     company = models.CharField(max_length=255, default='')
+    # profile_pic = models.ImageField(null=True, blank=True)
 
     REQUIRED_FIELDS = ["full_name", "phone_number"]
 

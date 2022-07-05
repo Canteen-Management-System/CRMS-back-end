@@ -1,11 +1,12 @@
 from django.contrib import admin
-from .models import Task, Category, Priority, ServiceType
+from .models import Task, Category, Priority, ServiceType, ClientReq
 
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
     model = Task
-    list_display = ['id', 'category', 'date', 'user', 'status']
+    list_display = ['id', 'category', 'date',
+                    'user', 'status', 'action_taken', 'details', 'assign_to']
 
 
 @admin.register(Category)
@@ -24,3 +25,8 @@ class PriorityAdmin(admin.ModelAdmin):
 class ServiceTypeAdmin(admin.ModelAdmin):
     model = ServiceType
     list_display = ['id', 'service']
+
+@admin.register(ClientReq)
+class ClientReqAdmin(admin.ModelAdmin):
+    model = ClientReq
+    list_display = ['id','client_name', 'client_phone_number', 'client_email', 'task_details']

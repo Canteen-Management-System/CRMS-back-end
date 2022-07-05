@@ -3,8 +3,8 @@ from rest_framework.generics import (
     ListCreateAPIView,
     RetrieveUpdateDestroyAPIView,
 )
-from tasks.models import Task, Category, ServiceType, Priority
-from .serializers import TasksSerializer, CategorySerializer, PrioritySerializer, ServiceTypeSerializer
+from tasks.models import Task, Category, ServiceType, Priority, ClientReq
+from .serializers import TasksSerializer, CategorySerializer, PrioritySerializer, ServiceTypeSerializer, ClientReqSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -12,7 +12,6 @@ from django.conf import settings
 from django.core.mail import send_mail
 
 
-# Tasks View and Detail
 class TasksList(ListCreateAPIView):
     queryset = Task.objects.all()
     serializer_class = TasksSerializer
@@ -23,6 +22,8 @@ class TasksList(ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
+        if user.role.name == 'Staff':
+            return Task.objects.all()
         return Task.objects.filter(user=user)
     
 
@@ -31,9 +32,9 @@ class TaskDetail(RetrieveUpdateDestroyAPIView):
     queryset = Task.objects.all()
     serializer_class = TasksSerializer
 
-    def get_queryset(self):
-        user = self.request.user
-        return Task.objects.filter(user=user)
+    # def get_queryset(self):
+    #     user = self.request.user
+    #     return Task.objects.filter(user=user)
 
 
 # Category View and Detail
@@ -91,3 +92,15 @@ def send_email(request):
         return Response("recieved")
 
 
+
+# ClientRequest View and Detail
+class ClientReqList(ListCreateAPIView):
+    queryset = ClientReq.objects.all()
+    serializer_class = ClientReqSerializer
+    permission_classes = []
+
+
+class ClientReqDetail(RetrieveUpdateDestroyAPIView):
+    queryset = ClientReq.objects.all()
+    serializer_class = ClientReqSerializer
+    permission_classes = []
