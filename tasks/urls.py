@@ -8,6 +8,7 @@ from tasks.api.viewset import (
     PriorityList,
     ServiceTypeList,
     ServiceTypeDetail,
+    send_email,
     ClientReqList,
     ClientReqDetail,
     )
@@ -18,6 +19,8 @@ urlpatterns = [
     # Tasks Lists and Details
     path('tasks-list', TasksList.as_view(), name='tasks_list'),
     path('task-detail/<int:pk>', TaskDetail.as_view(), name='task_detail'),
+    path('email', send_email, name="send_email"),
+
 
     # Category Lists and Details
     path('category-list', CategoryList.as_view(), name='category_list'),
