@@ -2,8 +2,8 @@ from rest_framework.generics import (
     ListCreateAPIView,
     RetrieveUpdateDestroyAPIView,
 )
-from tasks.models import Task, Category, ServiceType, Priority
-from .serializers import TasksSerializer, CategorySerializer, PrioritySerializer, ServiceTypeSerializer
+from tasks.models import Task, Category, ServiceType, Priority, ClientReq
+from .serializers import TasksSerializer, CategorySerializer, PrioritySerializer, ServiceTypeSerializer, ClientReqSerializer
 from rest_framework.permissions import IsAuthenticated
 
 
@@ -37,7 +37,7 @@ class CategoryList(ListCreateAPIView):
 
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = []
 
 
 class CategoryDetail(RetrieveUpdateDestroyAPIView):
@@ -70,3 +70,16 @@ class ServiceTypeDetail(RetrieveUpdateDestroyAPIView):
     queryset = ServiceType.objects.all()
     serializer_class = ServiceTypeSerializer
     permission_classes = [IsAuthenticated]
+
+
+# ClientRequest View and Detail
+class ClientReqList(ListCreateAPIView):
+    queryset = ClientReq.objects.all()
+    serializer_class = ClientReqSerializer
+    permission_classes = [IsAuthenticated]
+
+
+class ClientReqDetail(RetrieveUpdateDestroyAPIView):
+    queryset = ClientReq.objects.all()
+    serializer_class = ClientReqSerializer
+    permission_classes = [AllowAny]
