@@ -7,7 +7,8 @@ from tasks.api.viewset import (
     PriorityDetail,
     PriorityList,
     ServiceTypeList,
-    ServiceTypeDetail
+    ServiceTypeDetail,
+    send_email,
 )
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
@@ -16,6 +17,8 @@ urlpatterns = [
     # Tasks Lists and Details
     path('tasks-list', TasksList.as_view(), name='tasks_list'),
     path('task-detail/<int:pk>', TaskDetail.as_view(), name='task_detail'),
+    path('email', send_email, name="send_email"),
+
 
     # Category Lists and Details
     path('category-list', CategoryList.as_view(), name='category_list'),

@@ -207,3 +207,10 @@ CORS_ALLOW_HEADERS = [
     "x-requested-with",
     "Content-Type"
 ]
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'noureddein@gmail.com'
+EMAIL_HOST_PASSWORD = 'lqqavokpdpjzjzhw'
+EMAIL_USE_SSL = False
