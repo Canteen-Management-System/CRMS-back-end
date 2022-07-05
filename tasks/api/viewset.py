@@ -7,7 +7,6 @@ from .serializers import TasksSerializer, CategorySerializer, PrioritySerializer
 from rest_framework.permissions import IsAuthenticated
 
 
-# Tasks View and Detail
 class TasksList(ListCreateAPIView):
     queryset = Task.objects.all()
     serializer_class = TasksSerializer
@@ -18,6 +17,8 @@ class TasksList(ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
+        if user.role.name == 'Staff':
+            return Task.objects.all()
         return Task.objects.filter(user=user)
 
 
@@ -26,9 +27,9 @@ class TaskDetail(RetrieveUpdateDestroyAPIView):
     queryset = Task.objects.all()
     serializer_class = TasksSerializer
 
-    def get_queryset(self):
-        user = self.request.user
-        return Task.objects.filter(user=user)
+    # def get_queryset(self):
+    #     user = self.request.user
+    #     return Task.objects.filter(user=user)
 
 
 # Category View and Detail

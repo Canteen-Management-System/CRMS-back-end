@@ -5,7 +5,8 @@ from .models import Task, Category, Priority, ServiceType
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
     model = Task
-    list_display = ['id', 'category', 'date', 'user', 'status']
+    list_display = ['id', 'category', 'date',
+                    'user', 'status', 'action_taken', 'details', 'assign_to']
 
 
 @admin.register(Category)
