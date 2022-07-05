@@ -37,7 +37,7 @@ class CategoryList(ListCreateAPIView):
 
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticated]
 
 
 class CategoryDetail(RetrieveUpdateDestroyAPIView):
@@ -76,10 +76,10 @@ class ServiceTypeDetail(RetrieveUpdateDestroyAPIView):
 class ClientReqList(ListCreateAPIView):
     queryset = ClientReq.objects.all()
     serializer_class = ClientReqSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = []
 
 
 class ClientReqDetail(RetrieveUpdateDestroyAPIView):
     queryset = ClientReq.objects.all()
     serializer_class = ClientReqSerializer
-    permission_classes = [AllowAny]
+    permission_classes = []

@@ -38,9 +38,9 @@ urlpatterns = [
     path('token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
 
      # ClientRequest Lists and Details
-    path('clientReq-list', ClientReqList.as_view(), name='ClientReq_list'),
+    path('clientReq-list', ClientReqList.as_view(), name='clientReq_list'),
     path('clientReq-detail/<int:pk>',
-         ClientReqDetail.as_view(), name='ClientReq_detail'),
+         ClientReqDetail.as_view(), name='clientReq_detail'),
 
 
 ]

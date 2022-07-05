@@ -70,7 +70,7 @@ class ClientReq(models.Model):
     client_company = models.CharField(max_length=255, default='')
     client_phone_number = PhoneNumberField(unique=True)
     client_email = models.EmailField(max_length=255, unique=True)
-    task_category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    task_service_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE)
+    task_category = models.CharField(max_length=255, default='')
+    task_service_type = models.CharField(max_length=255, default='')
     task_details = models.TextField(null=True, blank=True)
     REQUIRED_FIELDS = ['client_name', 'client_phone_number', 'client_email', 'task_details']
